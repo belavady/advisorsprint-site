@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Case Study — Decision Influence Map · AdvisorSprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#111c15;--ink:#EFEBE0;--dim:#93A89A;--amber:#D89A44;--teal:#5FB39A;--line:rgba(239,235,224,.1);--panel:#152219;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.7 'Inter',sans-serif;}
+.wrap{max-width:880px;margin:0 auto;padding:0 30px;}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0;}
+.logo{font-family:Menlo,monospace;font-size:11px;letter-spacing:.3em;color:var(--ink);text-decoration:none;}
+nav .back{font-family:Menlo,monospace;font-size:10px;letter-spacing:.14em;color:var(--dim);text-decoration:none;}
+nav .back:hover{color:var(--amber);}
+.kicker{font-family:Menlo,monospace;font-size:10px;letter-spacing:.24em;color:var(--amber);margin-top:56px;}
+h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,4vw,44px);line-height:1.14;letter-spacing:-.01em;margin-top:16px;max-width:24ch;}
+.sub{margin-top:16px;color:var(--dim);font-size:15.5px;max-width:58ch;}
+h2{font-family:'Fraunces',serif;font-weight:600;font-size:23px;margin-top:58px;max-width:30ch;}
+p.body{margin-top:12px;color:var(--dim);max-width:62ch;}
+.pull{margin:40px 0;padding:26px 32px;border-left:3px solid var(--amber);background:var(--panel);border-radius:0 12px 12px 0;font-family:'Fraunces',serif;font-size:20px;line-height:1.5;max-width:60ch;}
+.pull b{color:var(--amber);font-weight:600;}
+/* sunset dial */
+.dial{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:2px;border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+.dcell{background:var(--panel);padding:28px 28px 24px;}
+.dcell .r{font-family:Menlo,monospace;font-size:9px;letter-spacing:.2em;color:var(--dim);}
+.dcell b{display:block;font-family:'Fraunces',serif;font-size:clamp(34px,4.6vw,52px);font-weight:600;line-height:1;margin-top:12px;}
+.dcell.ok b{color:var(--teal);}
+.dcell.hot b{color:var(--amber);}
+.dcell .t{margin-top:10px;font-size:13.5px;color:var(--dim);line-height:1.6;}
+.dial-cap{font-family:Menlo,monospace;font-size:9.5px;letter-spacing:.1em;color:var(--dim);margin-top:10px;}
+/* findings */
+.findings{margin-top:26px;display:grid;gap:2px;border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+.f{background:var(--panel);padding:20px 24px;}
+.f .k{font-family:Menlo,monospace;font-size:9px;letter-spacing:.2em;color:var(--amber);}
+.f .t{margin-top:6px;font-size:14.5px;line-height:1.65;}
+/* forces bar */
+.forces{margin-top:26px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:26px;}
+.frow{display:flex;align-items:center;gap:16px;margin-bottom:14px;}
+.frow:last-child{margin-bottom:0;}
+.frow .n{font-family:Menlo,monospace;font-size:10px;letter-spacing:.12em;width:150px;flex:none;color:var(--ink);}
+.frow .bar{flex:1;height:10px;border-radius:100px;background:rgba(239,235,224,.06);overflow:hidden;}
+.frow .fill{height:100%;border-radius:100px;}
+.forces-cap{font-family:Menlo,monospace;font-size:9.5px;letter-spacing:.1em;color:var(--dim);margin-top:16px;line-height:1.8;}
+.method{margin-top:26px;display:flex;flex-wrap:wrap;gap:8px;}
+.mchip{font-family:Menlo,monospace;font-size:9.5px;letter-spacing:.1em;color:var(--dim);border:1px solid var(--line);border-radius:100px;padding:7px 14px;}
+.note{margin-top:48px;font-family:Menlo,monospace;font-size:9.5px;letter-spacing:.06em;color:var(--dim);line-height:1.9;border-top:1px solid var(--line);padding-top:18px;}
+.cta{margin:56px 0 80px;padding:34px;border:1px solid var(--line);border-radius:14px;text-align:center;background:var(--panel);}
+.cta h3{font-family:'Fraunces',serif;font-weight:600;font-size:24px;}
+.cta .s{margin-top:8px;color:var(--dim);font-size:14px;}
+.cta a{display:inline-block;margin-top:20px;font-family:Menlo,monospace;font-size:11px;letter-spacing:.14em;color:var(--bg);background:var(--amber);border-radius:6px;padding:13px 28px;text-decoration:none;}
+@media(max-width:640px){.dial{grid-template-columns:1fr;}.frow .n{width:110px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav><a class="logo" href="index.html">ADVISORSPRINT</a><a class="back" href="index.html">← ALL INSTRUMENTS</a></nav>
+
+<div class="kicker">CASE STUDY · DECISION INFLUENCE MAP · HEALTHCARE</div>
+<h1>When a family chooses a hospital, what wins — the name, the doctor, or the drive?</h1>
+<div class="sub">A major US health system had retired two trusted legacy brands under one new name. Standard brand tracking measures levels — awareness, favorability. This instrument measured <em>weight</em>: the share of the actual decision each force carries, from forced trade-offs on an 800-persona, census-anchored synthetic panel across the system's two regional markets.</div>
+
+<div class="pull">The name is a <b>tiebreaker, never a driver.</b> Physicians and insurance networks carry the choice — which makes the few moments where the name <em>does</em> convert the entire brand strategy.</div>
+
+<h2>The sunset dial: one legacy brand transferred. The other refused.</h2>
+<p class="body">The cleanest test in the study: two hospitals identical in every way — same doctors, distance, wait, network — differing only in the name on the building. The share who still walk into the retired name is the "sunset dial," readable quarterly. The two regions returned opposite answers:</p>
+<div class="dial">
+  <div class="dcell ok"><div class="r">REGION A · LEGACY BRAND A</div><b>49.5%</b><div class="t">choose the legacy name on identical hospitals — a coin flip. Equity has transferred; the "formerly …" bridge has done its work.</div></div>
+  <div class="dcell hot"><div class="r">REGION B · LEGACY BRAND B</div><b>87.5%</b><div class="t">still walk into the retired name, four years after it officially ceased to exist — a 7-to-1 preference. The bridge is still load-bearing.</div></div>
+</div>
+<div class="dial-cap">n=400 PER REGION · IDENTICAL-HOSPITAL FORCED TRADE-OFF · THE DIAL DECIDES WHEN TO RETIRE THE BRIDGE — BY EVIDENCE, NOT AGENCY TIMELINE</div>
+
+<h2>What actually carries the decision</h2>
+<div class="forces">
+  <div class="frow"><span class="n">PHYSICIAN</span><div class="bar"><div class="fill" style="width:78%;background:var(--amber);"></div></div></div>
+  <div class="frow"><span class="n">INSURANCE NETWORK</span><div class="bar"><div class="fill" style="width:62%;background:#b98a4e;"></div></div></div>
+  <div class="frow"><span class="n">DISTANCE &amp; WAIT</span><div class="bar"><div class="fill" style="width:44%;background:#93A89A;"></div></div></div>
+  <div class="frow"><span class="n">THE NAME</span><div class="bar"><div class="fill" style="width:14%;background:rgba(239,235,224,.45);"></div></div></div>
+</div>
+<div class="forces-cap">RELATIVE DECISION WEIGHT, ILLUSTRATIVE SCALE — EXACT SHARES VARY BY DECISION TYPE AND REGION. A FORCE'S WEIGHT IS ITS PULL WHEN THAT FACTOR DIFFERS BETWEEN OPTIONS. THE NAME'S CEILING: 11% OF ANY DECISION, AT THE "IF IT'S SERIOUS" MOMENT.</div>
+
+<h2>Three findings a tracker would never surface</h2>
+<div class="findings">
+  <div class="f"><div class="k">FINDING 01</div><div class="t">Every decision type is physician-led — the question is degree, and it splits by region. In one region the name carried 3% of the cardiology choice; in the other, 9% — a legacy-brand halo that means one marketing playbook cannot serve both regions.</div></div>
+  <div class="f"><div class="k">FINDING 02</div><div class="t">Stated versus revealed: asked directly, 67% claim the insurance network decides for them. Their actual trade-offs show the answer depends on the decision. The gap between what people say drives them and what measurably does is itself a finding — and a media-planning input.</div></div>
+  <div class="f"><div class="k">FINDING 03</div><div class="t">The name converts in exactly three places — a specific service line in one region (where it beat the named competitor 2-to-1 among deciders), the severity leap ("if it's serious"), and the sunset decision itself. Everything else is physician-first or operations-first spend.</div></div>
+</div>
+
+<h2>From signal to plan</h2>
+<p class="body">Each finding cascades into a play with a measured baseline and a tracking mechanism: concentrate brand-led creative where the name demonstrably converts; hold the second region's "formerly …" bridge and retire it by evidence, not timeline; shift the halo service line to physician-first creative. A quarterly re-run of the same panel — same instrument, same segments — reports the delta on every baseline.</p>
+
+<h2>Synthetic respondents, real discipline</h2>
+<div class="method">
+  <span class="mchip">800 PERSONAS · ACS CENSUS MICRODATA, OFFICIAL WEIGHTS</span>
+  <span class="mchip">32,975 FORCED TRADE-OFF RESPONSES · ZERO PARSE FAILURES</span>
+  <span class="mchip">FICTIONAL-BRAND CONTROL ARM</span>
+  <span class="mchip">CROSS-MODEL SHADOW RUN — ORDERINGS HOLD</span>
+  <span class="mchip">CALIBRATION ANCHORS PUBLISHED, MISSES INCLUDED</span>
+  <span class="mchip">ZERO PHI — NO PATIENT RECORDS, EVER</span>
+</div>
+<p class="body">Panel marginals hit census targets; known biases (position preference, engagement over-report) are measured and absorbed in estimation, not hidden. Orderings, gaps, and region differences are the claims; absolute percentages are directional. Accuracy of the underlying instruments is validated against real-world outcomes.</p>
+
+<div class="note">CLIENT AND MARKET UNNAMED · SELF-INITIATED STUDY · METHODOLOGY AND STRUCTURAL FINDINGS PUBLISHED WITH NO CLIENT DATA · ADVISORSPRINT ENGAGEMENTS ARE CONFIDENTIAL BY DEFAULT</div>
+
+<div class="cta">
+  <h3>Map a decision you're about to bet on.</h3>
+  <div class="s">A rebrand, a launch, a committee sale — before the budget commits, know which force decides.</div>
+  <a href="mailto:belavady@gmail.com?subject=Decision%20Influence%20Map">REQUEST A BRIEFING</a>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>How a Study Works — Synthetic Research · AdvisorSprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#111c15;--ink:#EFEBE0;--dim:#93A89A;--amber:#D89A44;--teal:#5FB39A;--line:rgba(239,235,224,.1);--panel:#152219;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.7 'Inter',sans-serif;}
+.wrap{max-width:860px;margin:0 auto;padding:0 30px;}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0;}
+.logo{font-family:Menlo,monospace;font-size:11px;letter-spacing:.3em;color:var(--ink);text-decoration:none;}
+nav .back{font-family:Menlo,monospace;font-size:10px;letter-spacing:.14em;color:var(--dim);text-decoration:none;}
+nav .back:hover{color:var(--amber);}
+.kicker{font-family:Menlo,monospace;font-size:10px;letter-spacing:.24em;color:var(--amber);margin-top:56px;}
+h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,4vw,44px);line-height:1.14;margin-top:16px;max-width:22ch;}
+.sub{margin-top:16px;color:var(--dim);font-size:15.5px;max-width:56ch;}
+.step{display:grid;grid-template-columns:64px 1fr;gap:26px;margin-top:54px;}
+.step .n{font-family:'Fraunces',serif;font-size:26px;color:var(--amber);border-top:2px solid var(--amber);padding-top:10px;}
+.step h2{font-family:'Fraunces',serif;font-weight:600;font-size:22px;line-height:1.25;}
+.step p{margin-top:10px;color:var(--dim);max-width:56ch;}
+.frag{margin-top:16px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 20px;font-family:Menlo,monospace;font-size:11px;line-height:1.9;color:var(--ink);}
+.frag .fk{font-size:8.5px;letter-spacing:.2em;color:var(--amber);display:block;margin-bottom:8px;}
+.frag em{color:var(--teal);font-style:normal;}
+.frag s{color:var(--dim);text-decoration:none;}
+.layers{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;}
+.layer{font-family:Menlo,monospace;font-size:9.5px;letter-spacing:.12em;border-radius:100px;padding:7px 14px;border:1px solid var(--line);}
+.layer.s{color:var(--teal);border-color:rgba(95,179,154,.4);}
+.layer.c{color:var(--amber);border-color:rgba(216,154,68,.4);}
+.layer.m{color:var(--dim);}
+.cta{margin:70px 0 80px;padding:34px;border:1px solid var(--line);border-radius:14px;text-align:center;background:var(--panel);}
+.cta h3{font-family:'Fraunces',serif;font-weight:600;font-size:24px;}
+.cta .s{margin-top:8px;color:var(--dim);font-size:14px;}
+.cta a{display:inline-block;margin-top:20px;font-family:Menlo,monospace;font-size:11px;letter-spacing:.14em;color:var(--bg);background:var(--amber);border-radius:6px;padding:13px 28px;text-decoration:none;}
+@media(max-width:640px){.step{grid-template-columns:1fr;gap:8px;}.step .n{border-top:none;padding-top:0;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav><a class="logo" href="index.html">ADVISORSPRINT</a><a class="back" href="index.html">← ALL INSTRUMENTS</a></nav>
+
+<div class="kicker">SYNTHETIC RESEARCH · METHOD</div>
+<h1>How a study works.</h1>
+<div class="sub">Positioning, pricing, and concept research answered in days by synthetic respondent panels. Here is the pipeline, end to end — including the parts most vendors don't show you.</div>
+
+<div class="step">
+  <div class="n">01</div>
+  <div>
+    <h2>Frame the decision, not the opinion.</h2>
+    <p>We don't ask synthetic respondents what they think — we force them to choose. Every study is built as forced trade-offs around the actual decision: this option or that one, everything else held identical. Opinions flatter; trade-offs measure.</p>
+    <div class="frag"><span class="fk">FROM A LIVE INSTRUMENT</span>Two hospitals identical in every way — same doctors, distance, wait, network — differing only in the name on the building. Which do you walk into?</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="n">02</div>
+  <div>
+    <h2>Build the panel from real people's data.</h2>
+    <p>Personas are sampled from US Census microdata on official person weights — income, age, region, household structure drawn from real distributions, never conjured from a prompt. The panel's marginals are checked against census targets before a single question is asked.</p>
+    <div class="frag"><span class="fk">FROM A LIVE PANEL CHECK</span>800 personas · ACS microdata, official weights · panel insured-rate <em>95.0%</em> vs census <em>~94.5%</em> — marginals on target</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="n">03</div>
+  <div>
+    <h2>Calibrate against ground truth — and publish the misses.</h2>
+    <p>Before trusting the panel on your question, we test it on questions with known answers. Anchors that land build confidence; anchors that miss are documented and carried as caveats, not hidden. A fictional-brand control arm runs alongside real names to measure what the models "already believe."</p>
+    <div class="frag"><span class="fk">FROM A CALIBRATION LOG</span>Public-figure recognition: <em>1.0pt</em> off ground truth · insurance coverage: <em>0.4pt</em> off · care-engagement: <s>over-reports ~10pts — documented, treated as directional</s></div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="n">04</div>
+  <div>
+    <h2>Run at scale, with a second model watching.</h2>
+    <p>Choices are order-randomized; known model biases are measured and absorbed in estimation. An independent second model shadows the full run on identical designs — findings that don't replicate across both models don't get published as findings.</p>
+    <div class="frag"><span class="fk">FROM A RUN LEDGER</span>32,975 forced trade-off responses · zero parse failures · cross-model shadow run: <em>every published ordering holds</em></div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="n">05</div>
+  <div>
+    <h2>Label every claim by its evidence layer.</h2>
+    <p>Every output states what kind of knowledge it is. Orderings, gaps, and segment differences are the claims we stand behind; absolute percentages are directional. No number in a report pretends to be harder than its source.</p>
+    <div class="layers">
+      <span class="layer s">SAMPLED — from census microdata</span>
+      <span class="layer c">CALIBRATED — checked against ground truth</span>
+      <span class="layer m">MODELED — the instrument's inference</span>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="n">06</div>
+  <div>
+    <h2>Validate against reality. Track quarterly.</h2>
+    <p>Instrument accuracy is validated against real-world outcomes on public-domain questions — the hardest test available. And a study isn't a one-off deliverable: the same panel re-runs quarterly, same instrument, same segments, reporting the delta on every baseline your plan is built on.</p>
+    <div class="frag"><span class="fk">THE OPERATING PRINCIPLE</span>Research that doesn't cascade into a KPI is trivia. Every finding pairs with a measured baseline and the mechanism that tracks it.</div>
+  </div>
+</div>
+
+<div class="cta">
+  <h3>Bring the question you'd take to fieldwork.</h3>
+  <div class="s">We'll tell you honestly whether a synthetic panel can answer it — and where it should hand off to real respondents.</div>
+  <a href="mailto:belavady@gmail.com?subject=Synthetic%20Research%20question">REQUEST A BRIEFING</a>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>AdvisorSprint — Strategic Intelligence · Synthetic Research · Decision Influence Maps</title>
+<meta name="description" content="Three instruments for decisions that can't afford to be wrong."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#111c15;--ink:#EFEBE0;--dim:#93A89A;--amber:#D89A44;--line:rgba(239,235,224,.1);--panel:#152219;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.6 'Inter',sans-serif;}
+.shell{height:100vh;display:flex;flex-direction:column;max-width:1200px;margin:0 auto;padding:0 40px;}
+nav{flex:none;display:flex;justify-content:space-between;align-items:center;padding:20px 0;}
+.logo{font-family:Menlo,monospace;font-size:11px;letter-spacing:.3em;}
+nav .links a{font-family:Menlo,monospace;font-size:10px;letter-spacing:.14em;color:var(--dim);text-decoration:none;margin-left:24px;}
+nav .links a:hover{color:var(--amber);}
+
+.hero{flex:none;padding:4.5vh 0 4vh;}
+.hero h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(30px,3.6vw,46px);line-height:1.1;letter-spacing:-.01em;}
+.hero h1 em{color:var(--amber);font-style:italic;font-weight:400;}
+
+.trio{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+.cell{background:var(--panel);padding:3.2vh 26px;display:flex;flex-direction:column;transition:background .25s;}
+.cell:hover{background:#182a1f;}
+.glyph{height:9vh;min-height:54px;max-height:84px;display:flex;align-items:flex-start;}
+.glyph svg{height:100%;}
+.cell .n{font-family:Menlo,monospace;font-size:9.5px;letter-spacing:.22em;color:var(--amber);}
+.cell h2{margin-top:8px;font-family:'Fraunces',serif;font-weight:600;font-size:clamp(19px,1.8vw,24px);line-height:1.15;}
+.cell .what{margin-top:12px;font-size:14px;color:var(--ink);line-height:1.6;}
+.cell .for{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);}
+.cell .fk{font-family:Menlo,monospace;font-size:8.5px;letter-spacing:.22em;color:var(--dim);}
+.cell .fr{margin-top:6px;font-size:13px;color:var(--dim);line-height:1.7;}
+.cell a.go{margin-top:12px;font-family:Menlo,monospace;font-size:9.5px;letter-spacing:.14em;color:var(--amber);text-decoration:none;}
+
+.bar{flex:none;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:2.8vh 0 3vh;flex-wrap:wrap;}
+.bar .t{font-size:13px;color:var(--dim);max-width:56ch;}
+.bar a.btn{font-family:Menlo,monospace;font-size:10.5px;letter-spacing:.14em;color:var(--bg);background:var(--amber);border-radius:6px;padding:12px 24px;text-decoration:none;white-space:nowrap;}
+
+@media(max-width:920px){
+  .shell{height:auto;min-height:100vh;padding:0 22px;}
+  .trio{grid-template-columns:1fr;}
+  .glyph{height:60px;}
+  .hero{padding:26px 0 22px;}
+  .bar{padding:24px 0 40px;}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<nav>
+  <span class="logo">ADVISORSPRINT</span>
+  <span class="links"><a href="how-a-study-works.html">METHOD</a><a href="founder.html">FOUNDER</a><a href="mailto:belavady@gmail.com?subject=Briefing%20request">BRIEFING</a></span>
+</nav>
+
+<div class="hero">
+  <h1>Three instruments for decisions that <em>can't afford to be wrong.</em></h1>
+</div>
+
+<div class="trio">
+
+  <div class="cell">
+    <div class="glyph">
+      <svg viewBox="0 0 130 74" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="6" width="52" height="5" rx="2" fill="#EFEBE0" opacity=".85"/>
+        <rect x="2" y="16" width="40" height="5" rx="2" fill="#EFEBE0" opacity=".5"/>
+        <rect x="2" y="60" width="34" height="10" rx="3" fill="none" stroke="#D89A44"/>
+        <rect x="72" y="5" width="2.5" height="30" fill="#D89A44"/>
+        <rect x="81" y="7" width="44" height="4.5" rx="2" fill="#EFEBE0" opacity=".9"/>
+        <rect x="81" y="16" width="36" height="4.5" rx="2" fill="#EFEBE0" opacity=".6"/>
+        <rect x="81" y="25" width="28" height="4" rx="2" fill="#D89A44" opacity=".8"/>
+        <rect x="81" y="44" width="40" height="4.5" rx="2" fill="#EFEBE0" opacity=".55"/>
+        <rect x="81" y="53" width="32" height="4" rx="2" fill="#93A89A" opacity=".5"/>
+        <rect x="81" y="66" width="40" height="4.5" rx="2" fill="#EFEBE0" opacity=".55"/>
+      </svg>
+    </div>
+    <div class="n">01</div>
+    <h2>Strategic Intelligence</h2>
+    <div class="what">Fourteen AI agents orchestrated like a consulting engagement team — forward-looking analysis of your brand and category that ends in decisions, not dashboards.</div>
+    <div class="for">
+      <div class="fk">FOR</div>
+      <div class="fr">Founders &amp; CEOs · Strategy and insights analysts · Consultants</div>
+      <a class="go" href="http://advisorsprint-api.onrender.com/sprint/nike-inc-2026-09-08-75yx" target="_blank" rel="noopener">ASK IT A QUESTION →</a>
+    </div>
+  </div>
+
+  <div class="cell">
+    <div class="glyph">
+      <svg viewBox="0 0 130 74" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#93A89A" opacity=".4">
+          <circle cx="8" cy="10" r="2.6"/><circle cx="28" cy="10" r="2.6"/><circle cx="48" cy="10" r="2.6"/><circle cx="68" cy="10" r="2.6"/><circle cx="88" cy="10" r="2.6"/><circle cx="108" cy="10" r="2.6"/><circle cx="126" cy="10" r="2.6"/>
+          <circle cx="8" cy="30" r="2.6"/><circle cx="48" cy="30" r="2.6"/><circle cx="88" cy="30" r="2.6"/><circle cx="126" cy="30" r="2.6"/>
+          <circle cx="28" cy="50" r="2.6"/><circle cx="68" cy="50" r="2.6"/><circle cx="108" cy="50" r="2.6"/>
+          <circle cx="8" cy="68" r="2.6"/><circle cx="48" cy="68" r="2.6"/><circle cx="88" cy="68" r="2.6"/><circle cx="126" cy="68" r="2.6"/>
+        </g>
+        <g fill="#D89A44">
+          <circle cx="28" cy="30" r="3.6"/><circle cx="68" cy="30" r="3.6"/><circle cx="108" cy="30" r="3.6"/>
+          <circle cx="8" cy="50" r="3.6"/><circle cx="48" cy="50" r="3.6"/><circle cx="88" cy="50" r="3.6"/><circle cx="126" cy="50" r="3.6"/>
+          <circle cx="28" cy="68" r="3.6"/><circle cx="68" cy="68" r="3.6"/><circle cx="108" cy="68" r="3.6"/>
+        </g>
+      </svg>
+    </div>
+    <div class="n">02</div>
+    <h2>Synthetic Research</h2>
+    <div class="what">Positioning, pricing, and concept studies run on synthetic consumer panels sampled from real population data — results in days, not months.</div>
+    <div class="for">
+      <div class="fk">FOR</div>
+      <div class="fr">CMOs &amp; brand teams · Insights leaders · Agencies</div>
+      <a class="go" href="how-a-study-works.html">HOW A STUDY WORKS →</a>
+    </div>
+  </div>
+
+  <div class="cell">
+    <div class="glyph">
+      <svg viewBox="0 0 130 74" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#93A89A" stroke-opacity=".35" stroke-width="1">
+          <line x1="65" y1="37" x2="18" y2="12"/><line x1="65" y1="37" x2="22" y2="60"/>
+          <line x1="65" y1="37" x2="106" y2="10"/><line x1="65" y1="37" x2="112" y2="56"/>
+          <line x1="18" y1="12" x2="106" y2="10"/><line x1="22" y1="60" x2="112" y2="56"/>
+        </g>
+        <line x1="65" y1="37" x2="65" y2="70" stroke="#D89A44" stroke-width="1.6"/>
+        <circle cx="18" cy="12" r="6" fill="#152219" stroke="#93A89A"/>
+        <circle cx="22" cy="60" r="6" fill="#152219" stroke="#93A89A"/>
+        <circle cx="106" cy="10" r="6" fill="#152219" stroke="#93A89A"/>
+        <circle cx="112" cy="56" r="6" fill="#152219" stroke="#93A89A"/>
+        <circle cx="65" cy="70" r="4.5" fill="#152219" stroke="#93A89A"/>
+        <circle cx="65" cy="37" r="9" fill="#D89A44"/>
+      </svg>
+    </div>
+    <div class="n">03</div>
+    <h2>Decision Influence Maps</h2>
+    <div class="what">A map of who and what actually decides — the load-bearing voices, real barriers, and veto points in any buying or brand decision.</div>
+    <div class="for">
+      <div class="fk">FOR</div>
+      <div class="fr">Brand leaders · Commercial teams selling to committees · Diligence teams</div>
+      <a class="go" href="case-study-dim-healthcare.html">SEE A CASE STUDY →</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="bar">
+  <div class="t">Accuracy validated against real-world outcomes. Client engagements confidential — NDA by default.</div>
+  <a class="btn" href="mailto:belavady@gmail.com?subject=Briefing%20request">REQUEST A BRIEFING</a>
+</div>
+
+</div>
+</body>
+</html>
