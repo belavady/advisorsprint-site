@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>AdvisorSprint — Strategic Intelligence · Synthetic Research · Decision Influence Maps</title>
+<title>AdvisorSprint</title>
 <meta name="description" content="Three instruments for decisions that can't afford to be wrong."/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#111c15;--ink:#EFEBE0;--dim:#93A89A;--amber:#D89A44;--line:rgba(239,235,224,.1);--panel:#152219;}
+:root{--bg:#111c15;--ink:#EFEBE0;--dim:#93A89A;--amber:#D89A44;--teal:#5FB39A;--clay:#C98A6B;--line:rgba(239,235,224,.1);--panel:#152219;}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font:15px/1.6 'Inter',sans-serif;}
 .shell{height:100vh;display:flex;flex-direction:column;max-width:1200px;margin:0 auto;padding:0 40px;}
@@ -15,33 +15,69 @@ nav{flex:none;display:flex;justify-content:space-between;align-items:center;padd
 .logo{font-family:Menlo,monospace;font-size:11px;letter-spacing:.3em;}
 nav .links a{font-family:Menlo,monospace;font-size:10px;letter-spacing:.14em;color:var(--dim);text-decoration:none;margin-left:24px;}
 nav .links a:hover{color:var(--amber);}
-
-.hero{flex:none;padding:4.5vh 0 4vh;}
-.hero h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(30px,3.6vw,46px);line-height:1.1;letter-spacing:-.01em;}
+.hero{flex:none;padding:4vh 0 3.4vh;}
+.hero h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-.01em;}
 .hero h1 em{color:var(--amber);font-style:italic;font-weight:400;}
 
-.trio{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;border:1px solid var(--line);border-radius:14px;overflow:hidden;}
-.cell{background:var(--panel);padding:3.2vh 26px;display:flex;flex-direction:column;transition:background .25s;}
-.cell:hover{background:#182a1f;}
-.glyph{height:9vh;min-height:54px;max-height:84px;display:flex;align-items:flex-start;}
+/* ---- flip trio ---- */
+.trio{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+.flip{perspective:1400px;min-height:0;cursor:pointer;}
+.card{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.2,.7,.25,1);}
+.flip.on .card{transform:rotateY(180deg);}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:2.6vh 24px;display:flex;flex-direction:column;overflow:hidden;}
+.face::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,var(--tint),transparent 60%);animation:breathe 18s ease-in-out infinite;pointer-events:none;}
+.face>*{position:relative;}
+@keyframes breathe{0%,100%{opacity:.55;}50%{opacity:1;}}
+.face.back{transform:rotateY(180deg);}
+.flip{--acc:var(--amber);--tint:rgba(216,154,68,.07);}
+.flip.sr{--acc:var(--teal);--tint:rgba(95,179,154,.07);}
+.flip.dim{--acc:var(--clay);--tint:rgba(201,138,107,.08);}
+.face{border-top:2px solid var(--acc);}
+.glyph{height:8.4vh;min-height:50px;max-height:78px;display:flex;align-items:flex-start;}
 .glyph svg{height:100%;}
-.cell .n{font-family:Menlo,monospace;font-size:9.5px;letter-spacing:.22em;color:var(--amber);}
-.cell h2{margin-top:8px;font-family:'Fraunces',serif;font-weight:600;font-size:clamp(19px,1.8vw,24px);line-height:1.15;}
-.cell .what{margin-top:12px;font-size:14px;color:var(--ink);line-height:1.6;}
-.cell .for{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);}
-.cell .fk{font-family:Menlo,monospace;font-size:8.5px;letter-spacing:.22em;color:var(--dim);}
-.cell .fr{margin-top:6px;font-size:13px;color:var(--dim);line-height:1.7;}
-.cell a.go{margin-top:12px;font-family:Menlo,monospace;font-size:9.5px;letter-spacing:.14em;color:var(--amber);text-decoration:none;}
+.n{font-family:Menlo,monospace;font-size:9.5px;letter-spacing:.22em;color:var(--acc);}
+.face h2{margin-top:7px;font-family:'Fraunces',serif;font-weight:600;font-size:clamp(18px,1.7vw,23px);line-height:1.15;}
+.what{margin-top:11px;font-size:13.5px;color:var(--ink);line-height:1.6;}
+.for{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);}
+.fk{font-family:Menlo,monospace;font-size:8.5px;letter-spacing:.22em;color:var(--dim);}
+.fr{margin-top:5px;font-size:12.5px;color:var(--dim);line-height:1.65;}
+a.go{margin-top:10px;display:inline-block;font-family:Menlo,monospace;font-size:9.5px;letter-spacing:.14em;color:var(--acc);text-decoration:none;}
+.hint{position:absolute;top:12px;right:14px;font-family:Menlo,monospace;font-size:8.5px;letter-spacing:.14em;color:var(--dim);opacity:.8;}
+.flip:hover .hint{color:var(--acc);}
 
-.bar{flex:none;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:2.8vh 0 3vh;flex-wrap:wrap;}
+/* back: process flow */
+.face.back .n{margin-bottom:4px;}
+.flow{flex:1;display:flex;flex-direction:column;justify-content:center;gap:0;min-height:0;}
+.st{display:flex;align-items:center;gap:10px;opacity:0;transform:translateY(6px);transition:opacity .4s ease,transform .4s ease;}
+.flip.on .st{opacity:1;transform:none;}
+.st .dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--acc);}
+.st .tx{font-size:12.5px;line-height:1.45;color:var(--ink);}
+.st .tx b{color:var(--acc);font-weight:600;}
+.st .tx s{color:var(--dim);text-decoration:none;font-size:11px;}
+.ar{margin:2px 0 2px 3.5px;width:1px;height:1.6vh;min-height:8px;background:linear-gradient(var(--acc),transparent);opacity:0;transition:opacity .3s ease;}
+.flip.on .ar{opacity:1;}
+.flip.on .flow>*:nth-child(1){transition-delay:.25s;}.flip.on .flow>*:nth-child(2){transition-delay:.4s;}
+.flip.on .flow>*:nth-child(3){transition-delay:.5s;}.flip.on .flow>*:nth-child(4){transition-delay:.65s;}
+.flip.on .flow>*:nth-child(5){transition-delay:.75s;}.flip.on .flow>*:nth-child(6){transition-delay:.9s;}
+.flip.on .flow>*:nth-child(7){transition-delay:1.0s;}.flip.on .flow>*:nth-child(8){transition-delay:1.15s;}
+.flip.on .flow>*:nth-child(9){transition-delay:1.25s;}.flip.on .flow>*:nth-child(10){transition-delay:1.4s;}
+.face.back .for{border-top:1px solid var(--line);}
+.artifact{margin-top:10px;padding:10px 12px;border-left:2px solid var(--acc);background:rgba(0,0,0,.18);border-radius:0 8px 8px 0;opacity:0;transition:opacity .5s ease .9s;}
+.flip.on .artifact{opacity:1;}
+.artifact .al{font-family:Menlo,monospace;font-size:8px;letter-spacing:.18em;color:var(--acc);}
+.artifact .ah{margin-top:5px;font-family:'Fraunces',serif;font-size:12.5px;line-height:1.4;font-style:italic;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.artifact .aa{margin-top:5px;font-size:10.5px;color:var(--dim);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.artifact .aa b{color:var(--ink);font-weight:500;}
+
+.bar{flex:none;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:2.4vh 0 2.8vh;flex-wrap:wrap;}
 .bar .t{font-size:13px;color:var(--dim);max-width:56ch;}
 .bar a.btn{font-family:Menlo,monospace;font-size:10.5px;letter-spacing:.14em;color:var(--bg);background:var(--amber);border-radius:6px;padding:12px 24px;text-decoration:none;white-space:nowrap;}
 
 @media(max-width:920px){
   .shell{height:auto;min-height:100vh;padding:0 22px;}
-  .trio{grid-template-columns:1fr;}
-  .glyph{height:60px;}
-  .hero{padding:26px 0 22px;}
+  .trio{grid-template-columns:1fr;gap:14px;}
+  .flip{min-height:340px;}
+  .hero{padding:24px 0 20px;}
   .bar{padding:24px 0 40px;}
 }
 </style>
@@ -51,90 +87,159 @@ nav .links a:hover{color:var(--amber);}
 
 <nav>
   <span class="logo">ADVISORSPRINT</span>
-  <span class="links"><a href="how-a-study-works.html">METHOD</a><a href="founder.html">FOUNDER</a><a href="mailto:belavady@gmail.com?subject=Briefing%20request">BRIEFING</a></span>
+  <span class="links"><a href="founder.html">FOUNDER</a><a href="mailto:belavady@gmail.com?subject=Briefing%20request">BRIEFING</a></span>
 </nav>
 
 <div class="hero">
-  <h1>Three instruments for decisions that <em>can't afford to be wrong.</em></h1>
+  <h1>Three instruments for decisions<br/>that <em>can’t afford to be wrong.</em></h1>
 </div>
 
 <div class="trio">
 
-  <div class="cell">
-    <div class="glyph">
-      <svg viewBox="0 0 130 74" xmlns="http://www.w3.org/2000/svg">
-        <rect x="2" y="6" width="52" height="5" rx="2" fill="#EFEBE0" opacity=".85"/>
-        <rect x="2" y="16" width="40" height="5" rx="2" fill="#EFEBE0" opacity=".5"/>
-        <rect x="2" y="60" width="34" height="10" rx="3" fill="none" stroke="#D89A44"/>
-        <rect x="72" y="5" width="2.5" height="30" fill="#D89A44"/>
-        <rect x="81" y="7" width="44" height="4.5" rx="2" fill="#EFEBE0" opacity=".9"/>
-        <rect x="81" y="16" width="36" height="4.5" rx="2" fill="#EFEBE0" opacity=".6"/>
-        <rect x="81" y="25" width="28" height="4" rx="2" fill="#D89A44" opacity=".8"/>
-        <rect x="81" y="44" width="40" height="4.5" rx="2" fill="#EFEBE0" opacity=".55"/>
-        <rect x="81" y="53" width="32" height="4" rx="2" fill="#93A89A" opacity=".5"/>
-        <rect x="81" y="66" width="40" height="4.5" rx="2" fill="#EFEBE0" opacity=".55"/>
-      </svg>
-    </div>
-    <div class="n">01</div>
-    <h2>Strategic Intelligence</h2>
-    <div class="what">Fourteen AI agents orchestrated like a consulting engagement team — forward-looking analysis of your brand and category that ends in decisions, not dashboards.</div>
-    <div class="for">
-      <div class="fk">FOR</div>
-      <div class="fr">Founders &amp; CEOs · Strategy and insights analysts · Consultants</div>
-      <a class="go" href="http://advisorsprint-api.onrender.com/sprint/nike-inc-2026-09-08-75yx" target="_blank" rel="noopener">ASK IT A QUESTION →</a>
+  <!-- 01 SI -->
+  <div class="flip si" tabindex="0" role="button" aria-label="Strategic Intelligence — click to see how it works">
+    <div class="card">
+      <div class="face front">
+        <span class="hint">HOW IT WORKS ⟲</span>
+        <div class="glyph">
+          <svg viewBox="0 0 130 74" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="6" width="52" height="5" rx="2" fill="#EFEBE0" opacity=".85"/>
+            <rect x="2" y="16" width="40" height="5" rx="2" fill="#EFEBE0" opacity=".5"/>
+            <rect x="2" y="60" width="34" height="10" rx="3" fill="none" stroke="#D89A44"/>
+            <rect x="72" y="5" width="2.5" height="30" fill="#D89A44"/>
+            <rect x="81" y="7" width="44" height="4.5" rx="2" fill="#EFEBE0" opacity=".9"/>
+            <rect x="81" y="16" width="36" height="4.5" rx="2" fill="#EFEBE0" opacity=".6"/>
+            <rect x="81" y="25" width="28" height="4" rx="2" fill="#D89A44" opacity=".8"/>
+            <rect x="81" y="44" width="40" height="4.5" rx="2" fill="#EFEBE0" opacity=".55"/>
+            <rect x="81" y="53" width="32" height="4" rx="2" fill="#93A89A" opacity=".5"/>
+            <rect x="81" y="66" width="40" height="4.5" rx="2" fill="#EFEBE0" opacity=".55"/>
+          </svg>
+        </div>
+        <div class="n">01</div>
+        <h2>Strategic Intelligence</h2>
+        <div class="what">Fourteen AI agents orchestrated like a consulting engagement team — forward-looking analysis of your brand and category that ends in decisions, not dashboards.</div>
+        <div class="for">
+          <div class="fk">FOR</div>
+          <div class="fr">Founders &amp; CEOs · Strategy and insights analysts · Consultants</div>
+          <a class="go" href="http://advisorsprint-api.onrender.com/sprint/nike-inc-2026-09-08-75yx" target="_blank" rel="noopener">ASK IT A QUESTION →</a>
+        </div>
+      </div>
+      <div class="face back">
+        <span class="hint">⟲ BACK</span>
+        <div class="n">01 · HOW IT WORKS</div>
+        <div class="flow">
+          <div class="st"><span class="dot"></span><span class="tx"><b>14 specialist agents</b> <s>— parallel research across the category</s></span></div>
+          <div class="ar"></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>Reconciliation pass</b> <s>— every number forced to agree</s></span></div>
+          <div class="ar"></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>One adjudicated view</b> <s>— one synthesis brain signs one verdict</s></span></div>
+          <div class="ar"></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>One screen</b> <s>— ranked decisions, each with a deadline</s></span></div>
+        </div>
+        <div class="artifact">
+          <div class="al">FROM THE LIVE NIKE REPORT · SEPT 2026</div>
+          <div class="ah">"Nike is re-entering the same wholesale doors as Adidas, Puma and New Balance in the same two quarters — pricing power will not survive the collision."</div>
+          <div class="aa"><b>If you do one thing:</b> Resolve Converse — fix, harvest or divest — at FY27 Q2 earnings to free capital for the running-specialty counter-attack.</div>
+        </div>
+        <div class="for"><a class="go" href="http://advisorsprint-api.onrender.com/sprint/nike-inc-2026-09-08-75yx" target="_blank" rel="noopener">SEE THE FULL REPORT →</a></div>
+      </div>
     </div>
   </div>
 
-  <div class="cell">
-    <div class="glyph">
-      <svg viewBox="0 0 130 74" xmlns="http://www.w3.org/2000/svg">
-        <g fill="#93A89A" opacity=".4">
-          <circle cx="8" cy="10" r="2.6"/><circle cx="28" cy="10" r="2.6"/><circle cx="48" cy="10" r="2.6"/><circle cx="68" cy="10" r="2.6"/><circle cx="88" cy="10" r="2.6"/><circle cx="108" cy="10" r="2.6"/><circle cx="126" cy="10" r="2.6"/>
-          <circle cx="8" cy="30" r="2.6"/><circle cx="48" cy="30" r="2.6"/><circle cx="88" cy="30" r="2.6"/><circle cx="126" cy="30" r="2.6"/>
-          <circle cx="28" cy="50" r="2.6"/><circle cx="68" cy="50" r="2.6"/><circle cx="108" cy="50" r="2.6"/>
-          <circle cx="8" cy="68" r="2.6"/><circle cx="48" cy="68" r="2.6"/><circle cx="88" cy="68" r="2.6"/><circle cx="126" cy="68" r="2.6"/>
-        </g>
-        <g fill="#D89A44">
-          <circle cx="28" cy="30" r="3.6"/><circle cx="68" cy="30" r="3.6"/><circle cx="108" cy="30" r="3.6"/>
-          <circle cx="8" cy="50" r="3.6"/><circle cx="48" cy="50" r="3.6"/><circle cx="88" cy="50" r="3.6"/><circle cx="126" cy="50" r="3.6"/>
-          <circle cx="28" cy="68" r="3.6"/><circle cx="68" cy="68" r="3.6"/><circle cx="108" cy="68" r="3.6"/>
-        </g>
-      </svg>
-    </div>
-    <div class="n">02</div>
-    <h2>Synthetic Research</h2>
-    <div class="what">Positioning, pricing, and concept studies run on synthetic consumer panels sampled from real population data — results in days, not months.</div>
-    <div class="for">
-      <div class="fk">FOR</div>
-      <div class="fr">CMOs &amp; brand teams · Insights leaders · Agencies</div>
-      <a class="go" href="how-a-study-works.html">HOW A STUDY WORKS →</a>
+  <!-- 02 SR -->
+  <div class="flip sr" tabindex="0" role="button" aria-label="Synthetic Research — click to see how it works">
+    <div class="card">
+      <div class="face front">
+        <span class="hint">HOW IT WORKS ⟲</span>
+        <div class="glyph">
+          <svg viewBox="0 0 130 74" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#93A89A" opacity=".4">
+              <circle cx="8" cy="10" r="2.6"/><circle cx="28" cy="10" r="2.6"/><circle cx="48" cy="10" r="2.6"/><circle cx="68" cy="10" r="2.6"/><circle cx="88" cy="10" r="2.6"/><circle cx="108" cy="10" r="2.6"/><circle cx="126" cy="10" r="2.6"/>
+              <circle cx="8" cy="30" r="2.6"/><circle cx="48" cy="30" r="2.6"/><circle cx="88" cy="30" r="2.6"/><circle cx="126" cy="30" r="2.6"/>
+              <circle cx="28" cy="50" r="2.6"/><circle cx="68" cy="50" r="2.6"/><circle cx="108" cy="50" r="2.6"/>
+              <circle cx="8" cy="68" r="2.6"/><circle cx="48" cy="68" r="2.6"/><circle cx="88" cy="68" r="2.6"/><circle cx="126" cy="68" r="2.6"/>
+            </g>
+            <g fill="#5FB39A">
+              <circle cx="28" cy="30" r="3.6"/><circle cx="68" cy="30" r="3.6"/><circle cx="108" cy="30" r="3.6"/>
+              <circle cx="8" cy="50" r="3.6"/><circle cx="48" cy="50" r="3.6"/><circle cx="88" cy="50" r="3.6"/><circle cx="126" cy="50" r="3.6"/>
+              <circle cx="28" cy="68" r="3.6"/><circle cx="68" cy="68" r="3.6"/><circle cx="108" cy="68" r="3.6"/>
+            </g>
+          </svg>
+        </div>
+        <div class="n">02</div>
+        <h2>Synthetic Research</h2>
+        <div class="what">Positioning, pricing, and concept studies run on synthetic consumer panels sampled from real population data — results in days, not months.</div>
+        <div class="for">
+          <div class="fk">FOR</div>
+          <div class="fr">CMOs &amp; brand teams · Insights leaders · Agencies</div>
+          <a class="go" href="how-a-study-works.html">HOW A STUDY WORKS →</a>
+        </div>
+      </div>
+      <div class="face back">
+        <span class="hint">⟲ BACK</span>
+        <div class="n">02 · HOW IT WORKS</div>
+        <div class="flow">
+          <div class="st"><span class="dot"></span><span class="tx"><b>Census microdata</b> <s>— real population records, official weights</s></span></div>
+          <div class="ar"></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>Weighted sampling</b> <s>— hundreds of personas that match the population by construction</s></span></div>
+          <div class="ar"></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>Calibration first</b> <s>— tested on known answers; misses documented</s></span></div>
+          <div class="ar"></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>Forced trade-offs</b> <s>— choices, not opinions; order-randomized at scale</s></span></div>
+          <div class="ar"></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>Labeled findings</b> <s>— sampled / calibrated / modeled; validated against outcomes</s></span></div>
+        </div>
+        <div class="for"><a class="go" href="how-a-study-works.html">THE FULL METHOD →</a></div>
+      </div>
     </div>
   </div>
 
-  <div class="cell">
-    <div class="glyph">
-      <svg viewBox="0 0 130 74" xmlns="http://www.w3.org/2000/svg">
-        <g stroke="#93A89A" stroke-opacity=".35" stroke-width="1">
-          <line x1="65" y1="37" x2="18" y2="12"/><line x1="65" y1="37" x2="22" y2="60"/>
-          <line x1="65" y1="37" x2="106" y2="10"/><line x1="65" y1="37" x2="112" y2="56"/>
-          <line x1="18" y1="12" x2="106" y2="10"/><line x1="22" y1="60" x2="112" y2="56"/>
-        </g>
-        <line x1="65" y1="37" x2="65" y2="70" stroke="#D89A44" stroke-width="1.6"/>
-        <circle cx="18" cy="12" r="6" fill="#152219" stroke="#93A89A"/>
-        <circle cx="22" cy="60" r="6" fill="#152219" stroke="#93A89A"/>
-        <circle cx="106" cy="10" r="6" fill="#152219" stroke="#93A89A"/>
-        <circle cx="112" cy="56" r="6" fill="#152219" stroke="#93A89A"/>
-        <circle cx="65" cy="70" r="4.5" fill="#152219" stroke="#93A89A"/>
-        <circle cx="65" cy="37" r="9" fill="#D89A44"/>
-      </svg>
-    </div>
-    <div class="n">03</div>
-    <h2>Decision Influence Maps</h2>
-    <div class="what">A map of who and what actually decides — the load-bearing voices, real barriers, and veto points in any buying or brand decision.</div>
-    <div class="for">
-      <div class="fk">FOR</div>
-      <div class="fr">Brand leaders · Commercial teams selling to committees · Diligence teams</div>
-      <a class="go" href="case-study-dim-healthcare.html">SEE A CASE STUDY →</a>
+  <!-- 03 DIM -->
+  <div class="flip dim" tabindex="0" role="button" aria-label="Decision Influence Maps — click to see how it works">
+    <div class="card">
+      <div class="face front">
+        <span class="hint">HOW IT WORKS ⟲</span>
+        <div class="glyph">
+          <svg viewBox="0 0 130 74" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#93A89A" stroke-opacity=".35" stroke-width="1">
+              <line x1="65" y1="37" x2="18" y2="12"/><line x1="65" y1="37" x2="22" y2="60"/>
+              <line x1="65" y1="37" x2="106" y2="10"/><line x1="65" y1="37" x2="112" y2="56"/>
+              <line x1="18" y1="12" x2="106" y2="10"/><line x1="22" y1="60" x2="112" y2="56"/>
+            </g>
+            <line x1="65" y1="37" x2="65" y2="70" stroke="#C98A6B" stroke-width="1.6"/>
+            <circle cx="18" cy="12" r="6" fill="#152219" stroke="#93A89A"/>
+            <circle cx="22" cy="60" r="6" fill="#152219" stroke="#93A89A"/>
+            <circle cx="106" cy="10" r="6" fill="#152219" stroke="#93A89A"/>
+            <circle cx="112" cy="56" r="6" fill="#152219" stroke="#93A89A"/>
+            <circle cx="65" cy="70" r="4.5" fill="#152219" stroke="#93A89A"/>
+            <circle cx="65" cy="37" r="9" fill="#C98A6B"/>
+          </svg>
+        </div>
+        <div class="n">03</div>
+        <h2>Decision Influence Maps</h2>
+        <div class="what">A map of who and what actually decides — the load-bearing voices, real barriers, and veto points in any buying or brand decision.</div>
+        <div class="for">
+          <div class="fk">FOR</div>
+          <div class="fr">Brand leaders · Commercial teams selling to committees · Diligence teams</div>
+          <a class="go" href="case-study-dim-healthcare.html">SEE A CASE STUDY →</a>
+        </div>
+      </div>
+      <div class="face back">
+        <span class="hint">⟲ BACK</span>
+        <div class="n">03 · HOW IT WORKS</div>
+        <div class="flow">
+          <div class="st"><span class="dot"></span><span class="tx"><b>One decision framed</b> <s>— not a market: the actual choice, with its real options</s></span></div>
+          <div class="ar"></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>Voices instantiated</b> <s>— the committee: decider, partner, budget, expert, veto</s></span></div>
+          <div class="ar"></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>They deliberate</b> <s>— position → objection → convergence, per household or committee</s></span></div>
+          <div class="ar"></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>The map</b> <s>— which voice carried it, which held veto, where the narrative broke</s></span></div>
+          <div class="ar"></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>Flip levers ranked</b> <s>— what would have changed the outcome, by segment</s></span></div>
+        </div>
+        <div class="for"><a class="go" href="case-study-dim-healthcare.html">THE HEALTHCARE STUDY →</a></div>
+      </div>
     </div>
   </div>
 
@@ -146,5 +251,18 @@ nav .links a:hover{color:var(--amber);}
 </div>
 
 </div>
+
+<script>
+document.querySelectorAll('.flip').forEach(function(el){
+  function toggle(e){
+    if(e.target.closest('a')) return;           // links navigate, never flip
+    el.classList.toggle('on');
+  }
+  el.addEventListener('click', toggle);
+  el.addEventListener('keydown', function(e){
+    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); el.classList.toggle('on'); }
+  });
+});
+</script>
 </body>
 </html>
