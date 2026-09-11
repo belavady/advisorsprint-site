@@ -22,16 +22,16 @@ nav .links a:hover{color:var(--amber);}
 /* ---- flip trio ---- */
 .trio{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
 .flip{perspective:1400px;min-height:0;cursor:pointer;}
-.card{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.2,.7,.25,1);}
+.card{position:relative;width:100%;height:100%;transform-style:preserve-3d;-webkit-transform-style:preserve-3d;transition:transform .65s cubic-bezier(.2,.7,.25,1);}
 .flip.on .card{transform:rotateY(180deg);}
 .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:2.6vh 24px;display:flex;flex-direction:column;overflow:hidden;}
 .face::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,var(--tint),transparent 60%);animation:breathe 18s ease-in-out infinite;pointer-events:none;}
-.face>*{position:relative;}
-@keyframes breathe{0%,100%{opacity:.55;}50%{opacity:1;}}
+@keyframes breathe{0%,100%{opacity:.35;}50%{opacity:1;}}
+.face.front{transform:rotateY(0deg);}
 .face.back{transform:rotateY(180deg);}
-.flip{--acc:var(--amber);--tint:rgba(216,154,68,.07);}
-.flip.sr{--acc:var(--teal);--tint:rgba(95,179,154,.07);}
-.flip.dim{--acc:var(--clay);--tint:rgba(201,138,107,.08);}
+.flip{--acc:var(--amber);--tint:rgba(216,154,68,.13);}
+.flip.sr{--acc:var(--teal);--tint:rgba(95,179,154,.13);}
+.flip.dim{--acc:var(--clay);--tint:rgba(201,138,107,.14);}
 .face{border-top:2px solid var(--acc);}
 .glyph{height:8.4vh;min-height:50px;max-height:78px;display:flex;align-items:flex-start;}
 .glyph svg{height:100%;}
@@ -48,24 +48,25 @@ a.go{margin-top:10px;display:inline-block;font-family:Menlo,monospace;font-size:
 /* back: process flow */
 .face.back .n{margin-bottom:4px;}
 .flow{flex:1;display:flex;flex-direction:column;justify-content:center;gap:0;min-height:0;}
-.st{display:flex;align-items:center;gap:10px;opacity:0;transform:translateY(6px);transition:opacity .4s ease,transform .4s ease;}
-.flip.on .st{opacity:1;transform:none;}
+.st{display:flex;align-items:center;gap:10px;opacity:0;}
+.flip.on .st{animation:stepin .45s ease forwards;}
+@keyframes stepin{from{opacity:0;transform:translateY(7px);}to{opacity:1;transform:none;}}
 .st .dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--acc);}
 .st .tx{font-size:12.5px;line-height:1.45;color:var(--ink);}
 .st .tx b{color:var(--acc);font-weight:600;}
 .st .tx s{color:var(--dim);text-decoration:none;font-size:11px;}
-.ar{margin:2px 0 2px 3.5px;width:1px;height:1.6vh;min-height:8px;background:linear-gradient(var(--acc),transparent);opacity:0;transition:opacity .3s ease;}
-.flip.on .ar{opacity:1;}
-.flip.on .flow>*:nth-child(1){transition-delay:.25s;}.flip.on .flow>*:nth-child(2){transition-delay:.4s;}
-.flip.on .flow>*:nth-child(3){transition-delay:.5s;}.flip.on .flow>*:nth-child(4){transition-delay:.65s;}
-.flip.on .flow>*:nth-child(5){transition-delay:.75s;}.flip.on .flow>*:nth-child(6){transition-delay:.9s;}
-.flip.on .flow>*:nth-child(7){transition-delay:1.0s;}.flip.on .flow>*:nth-child(8){transition-delay:1.15s;}
-.flip.on .flow>*:nth-child(9){transition-delay:1.25s;}.flip.on .flow>*:nth-child(10){transition-delay:1.4s;}
+.ar{margin:2px 0 2px 3.5px;width:1px;height:1.6vh;min-height:8px;background:linear-gradient(var(--acc),transparent);opacity:0;}
+.flip.on .ar{animation:stepin .35s ease forwards;}
+.flip.on .flow>*:nth-child(1){animation-delay:.6s;}.flip.on .flow>*:nth-child(2){animation-delay:.75s;}
+.flip.on .flow>*:nth-child(3){animation-delay:.85s;}.flip.on .flow>*:nth-child(4){animation-delay:1.0s;}
+.flip.on .flow>*:nth-child(5){animation-delay:1.1s;}.flip.on .flow>*:nth-child(6){animation-delay:1.25s;}
+.flip.on .flow>*:nth-child(7){animation-delay:1.35s;}.flip.on .flow>*:nth-child(8){animation-delay:1.5s;}
+.flip.on .flow>*:nth-child(9){animation-delay:1.6s;}.flip.on .flow>*:nth-child(10){animation-delay:1.75s;}
 .face.back .for{border-top:1px solid var(--line);}
-.artifact{margin-top:10px;padding:10px 12px;border-left:2px solid var(--acc);background:rgba(0,0,0,.18);border-radius:0 8px 8px 0;opacity:0;transition:opacity .5s ease .9s;}
-.flip.on .artifact{opacity:1;}
+.artifact{margin-top:10px;padding:10px 12px;border-left:2px solid var(--acc);background:rgba(0,0,0,.18);border-radius:0 8px 8px 0;opacity:0;}
+.flip.on .artifact{animation:stepin .5s ease forwards 1.85s;}
 .artifact .al{font-family:Menlo,monospace;font-size:8px;letter-spacing:.18em;color:var(--acc);}
-.artifact .ah{margin-top:5px;font-family:'Fraunces',serif;font-size:12.5px;line-height:1.4;font-style:italic;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.artifact .ah{margin-top:5px;font-family:'Fraunces',serif;font-size:12.5px;line-height:1.4;font-style:italic;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 .artifact .aa{margin-top:5px;font-size:10.5px;color:var(--dim);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 .artifact .aa b{color:var(--ink);font-weight:500;}
 
@@ -128,20 +129,22 @@ a.go{margin-top:10px;display:inline-block;font-family:Menlo,monospace;font-size:
         <span class="hint">⟲ BACK</span>
         <div class="n">01 · HOW IT WORKS</div>
         <div class="flow">
-          <div class="st"><span class="dot"></span><span class="tx"><b>14 specialist agents</b> <s>— parallel research across the category</s></span></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>14-agent orchestration</b> <s>— role-briefed specialists, each grounded in live market data</s></span></div>
           <div class="ar"></div>
-          <div class="st"><span class="dot"></span><span class="tx"><b>Reconciliation pass</b> <s>— every number forced to agree</s></span></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>Every number reconciled</b> <s>— a canonical fact table catches conflicts before anything is claimed</s></span></div>
           <div class="ar"></div>
-          <div class="st"><span class="dot"></span><span class="tx"><b>One adjudicated view</b> <s>— one synthesis brain signs one verdict</s></span></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>One accountable view</b> <s>— trade-offs weighed, adjudicated, signed — not fourteen opinions</s></span></div>
           <div class="ar"></div>
-          <div class="st"><span class="dot"></span><span class="tx"><b>One screen</b> <s>— ranked decisions, each with a deadline</s></span></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>Forward-looking, decision-first</b> <s>— ranked moves with deadlines, not a rear-view dashboard; evidence one click deep</s></span></div>
+          <div class="ar"></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>Deep Dive</b> <s>— commission a dedicated agent team for the complex questions your report provokes</s></span></div>
         </div>
         <div class="artifact">
           <div class="al">FROM THE LIVE NIKE REPORT · SEPT 2026</div>
           <div class="ah">"Nike is re-entering the same wholesale doors as Adidas, Puma and New Balance in the same two quarters — pricing power will not survive the collision."</div>
           <div class="aa"><b>If you do one thing:</b> Resolve Converse — fix, harvest or divest — at FY27 Q2 earnings to free capital for the running-specialty counter-attack.</div>
         </div>
-        <div class="for"><a class="go" href="http://advisorsprint-api.onrender.com/sprint/nike-inc-2026-09-08-75yx" target="_blank" rel="noopener">SEE THE FULL REPORT →</a></div>
+        <div class="for"><a class="go" href="http://advisorsprint-api.onrender.com/sprint/nike-inc-2026-09-08-75yx" target="_blank" rel="noopener">ASK IT A QUESTION →</a></div>
       </div>
     </div>
   </div>
@@ -179,17 +182,17 @@ a.go{margin-top:10px;display:inline-block;font-family:Menlo,monospace;font-size:
         <span class="hint">⟲ BACK</span>
         <div class="n">02 · HOW IT WORKS</div>
         <div class="flow">
-          <div class="st"><span class="dot"></span><span class="tx"><b>Census microdata</b> <s>— real population records, official weights</s></span></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>Sampled, not invented</b> <s>— panels drawn from census microdata, never prompted stereotypes</s></span></div>
           <div class="ar"></div>
-          <div class="st"><span class="dot"></span><span class="tx"><b>Weighted sampling</b> <s>— hundreds of personas that match the population by construction</s></span></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>Real population structure</b> <s>— attitudes stay correlated the way people actually are</s></span></div>
           <div class="ar"></div>
-          <div class="st"><span class="dot"></span><span class="tx"><b>Calibration first</b> <s>— tested on known answers; misses documented</s></span></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>Calibrated before trusted</b> <s>— tested on known answers first; misses disclosed</s></span></div>
           <div class="ar"></div>
-          <div class="st"><span class="dot"></span><span class="tx"><b>Forced trade-offs</b> <s>— choices, not opinions; order-randomized at scale</s></span></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>Bias-managed by design</b> <s>— randomized forced trade-offs, fictional-brand control arms</s></span></div>
           <div class="ar"></div>
-          <div class="st"><span class="dot"></span><span class="tx"><b>Labeled findings</b> <s>— sampled / calibrated / modeled; validated against outcomes</s></span></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>Every claim labeled</b> <s>— sampled, calibrated, or modeled; replicated on a second model</s></span></div>
         </div>
-        <div class="for"><a class="go" href="how-a-study-works.html">THE FULL METHOD →</a></div>
+        <div class="for"><a class="go" href="how-a-study-works.html">HOW A STUDY WORKS →</a></div>
       </div>
     </div>
   </div>
@@ -228,17 +231,17 @@ a.go{margin-top:10px;display:inline-block;font-family:Menlo,monospace;font-size:
         <span class="hint">⟲ BACK</span>
         <div class="n">03 · HOW IT WORKS</div>
         <div class="flow">
-          <div class="st"><span class="dot"></span><span class="tx"><b>One decision framed</b> <s>— not a market: the actual choice, with its real options</s></span></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>One decision, mapped</b> <s>— the real choice, its options, the committee that makes it</s></span></div>
           <div class="ar"></div>
-          <div class="st"><span class="dot"></span><span class="tx"><b>Voices instantiated</b> <s>— the committee: decider, partner, budget, expert, veto</s></span></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>Every seat modeled</b> <s>— decider, budget-holder, expert, veto — grounded in population data</s></span></div>
           <div class="ar"></div>
-          <div class="st"><span class="dot"></span><span class="tx"><b>They deliberate</b> <s>— position → objection → convergence, per household or committee</s></span></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>Structured deliberation</b> <s>— position → objection → convergence (patent-pending)</s></span></div>
           <div class="ar"></div>
-          <div class="st"><span class="dot"></span><span class="tx"><b>The map</b> <s>— which voice carried it, which held veto, where the narrative broke</s></span></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>Influence, quantified</b> <s>— decision weights, veto seats, narrative break points</s></span></div>
           <div class="ar"></div>
-          <div class="st"><span class="dot"></span><span class="tx"><b>Flip levers ranked</b> <s>— what would have changed the outcome, by segment</s></span></div>
+          <div class="st"><span class="dot"></span><span class="tx"><b>Levers, ranked</b> <s>— what flips the outcome, by segment</s></span></div>
         </div>
-        <div class="for"><a class="go" href="case-study-dim-healthcare.html">THE HEALTHCARE STUDY →</a></div>
+        <div class="for"><a class="go" href="case-study-dim-healthcare.html">SEE A CASE STUDY →</a></div>
       </div>
     </div>
   </div>
