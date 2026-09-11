@@ -288,7 +288,7 @@ a.go{margin-top:10px;display:inline-block;font-family:Menlo,monospace;font-size:
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   var i = 0;
-  var BACK_MS = 13500, GAP_MS = 3200, START_MS = 6000;
+  var BACK_MS = 13500, GAP_MS = 3200, START_MS = 2800;
   function wait(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
   function paused(){ return hoverPause || document.hidden; }
   function whenClear(){
